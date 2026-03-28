@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="id="btn-2"width=device-width, initial-scale=1.0">
-    <title>Calculator Project</title>
-    <link rel="stylesheet" href="Calculator.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Calculator</title>
+  <link rel="stylesheet" href="Calculator.css"/>
 </head>
+
 <body>
-    <div class="container">
-        <input type="text" id="display" readonly> 
-        <div class="button-container">
-        <button class="button" id="btn-c">C</button>
-        <button class="button" id="btn-1">1</button>
-        <button class="button" id="btn-2">2</button>
-        <button class="button"id="btn-+">+</button>
-        <button class="button"id="btn-3">3</button>
-        <button class="button"id="btn-4">4</button>
-        <button class="button"id="btn--">-</button>
-        <button class="button"id="btn-5">5</button>
-        <button class="button"id="btn-6">6</button>
-        <button class="button"id="btn-*">*</button>
-        <button class="button"id="btn-7">7</button>
-        <button class="button"id="btn-8">8</button>
-        <button class="button"id="btn-/">/</button>
-        <button class="button"id="btn-=">=</button>
-        <button class="button"id="btn-9">9</button>
-        <button class="button"id="btn-0">0</button>
-        <button class="button"id="btn-.">.</button>
-        </div>
-        <p> 🔥Made By Ali Ahsan 🔥</p>
-        </div>
-        <script src="Calculator.js"></script>
+
+<div class="calculator">
+
+  <input type="text" id="display" placeholder="0" readonly />
+
+  <div class="buttons">
+    <button class="btn operator" data-value="C">C</button>
+    <button class="btn operator" data-value="/">÷</button>
+    <button class="btn operator" data-value="*">×</button>
+    <button class="btn operator" data-value="-">−</button>
+
+    <button class="btn" data-value="7">7</button>
+    <button class="btn" data-value="8">8</button>
+    <button class="btn" data-value="9">9</button>
+    <button class="btn operator" data-value="+">+</button>
+
+    <button class="btn" data-value="4">4</button>
+    <button class="btn" data-value="5">5</button>
+    <button class="btn" data-value="6">6</button>
+    <button class="btn equal" data-value="=">=</button>
+
+    <button class="btn" data-value="1">1</button>
+    <button class="btn" data-value="2">2</button>
+    <button class="btn" data-value="3">3</button>
+
+    <button class="btn zero" data-value="0">0</button>
+    <button class="btn" data-value=".">.</button>
+  </div>
+
+  <p class="footer">🔥 Made By Ali Ahsan 🔥</p>
+
+</div>
+
+<script src="Calculator.js"></script>
 </body>
 </html>
