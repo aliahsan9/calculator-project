@@ -1,93 +1,56 @@
-let currentdisplay = '';
-document.querySelector('#display').value = currentdisplay;
-document.getElementById('btn-c').onclick = function() {
-    currentdisplay = '';
-    document.getElementById('btn-c').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-document.getElementById('btn-1').onclick = function() {
-    currentdisplay = currentdisplay + '1';
-    document.getElementById('btn-1').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-document.getElementById('btn-2').onclick = function() {
-    currentdisplay = currentdisplay + '2';
-    document.getElementById('btn-2').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-document.getElementById('btn-+').onclick = function() {
-    currentdisplay = currentdisplay + '+';
-    document.getElementById('btn-+').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-document.getElementById('btn-3').onclick = function() {
-    currentdisplay = currentdisplay + '3';
-    document.getElementById('btn-3').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-document.getElementById('btn-4').onclick = function() {
-    currentdisplay = currentdisplay + '4';
-    document.getElementById('btn-4').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-document.getElementById('btn--').onclick = function() {
-    currentdisplay = currentdisplay + '-';
-    document.getElementById('btn--').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-document.getElementById('btn-5').onclick = function() {
-    currentdisplay = currentdisplay + '5';
-    document.getElementById('btn-5').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-document.getElementById('btn-6').onclick = function() {
-    currentdisplay = currentdisplay + '6';
-    document.getElementById('btn-6').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-document.getElementById('btn-*').onclick = function() {
-    currentdisplay = currentdisplay + '*';
-    document.getElementById('btn-*').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-document.getElementById('btn-7').onclick = function() {
-    currentdisplay = currentdisplay + '7';
-    document.getElementById('btn-7').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
+const display = document.getElementById("display");
+const buttons = document.querySelectorAll(".btn");
 
-document.getElementById('btn-8').onclick = function() {
-    currentdisplay = currentdisplay + '8';
-    document.getElementById('btn-8').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
+let currentInput = "";
 
-document.getElementById('btn-/').onclick = function() {
-    currentdisplay = currentdisplay + '/';
-    document.getElementById('btn-/').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
+// Handle button clicks
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        const value = button.getAttribute("data-value");
 
-document.getElementById('btn-=').onclick = function() {
-    currentdisplay = eval(currentdisplay);
-    document.querySelector('#display').value = currentdisplay;
-};
+        if (value === "C") {
+            currentInput = "";
+            display.value = "";
+        } 
+        else if (value === "=") {
+            try {
+                currentInput = eval(currentInput).toString();
+                display.value = currentInput;
+            } catch {
+                display.value = "Error";
+                currentInput = "";
+            }
+        } 
+        else {
+            currentInput += value;
+            display.value = currentInput;
+        }
+    });
+});
 
-document.getElementById('btn-9').onclick = function() {
-    currentdisplay = currentdisplay + '9';
-    document.getElementById('btn-9').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
+// Keyboard support (pro feature)
+document.addEventListener("keydown", (e) => {
+    const key = e.key;
 
-document.getElementById('btn-0').onclick = function() {
-    currentdisplay = currentdisplay + '0';
-    document.getElementById('btn-0').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-
-document.getElementById('btn-.').onclick = function() {
-    currentdisplay = currentdisplay + '.';
-    document.getElementById('btn-.').value = currentdisplay;
-    document.querySelector('#display').value = currentdisplay;
-};
-
+    if (!isNaN(key) || ["+", "-", "*", "/", "."].includes(key)) {
+        currentInput += key;
+        display.value = currentInput;
+    } 
+    else if (key === "Enter") {
+        try {
+            currentInput = eval(currentInput).toString();
+            display.value = currentInput;
+        } catch {
+            display.value = "Error";
+            currentInput = "";
+        }
+    } 
+    else if (key === "Backspace") {
+        currentInput = currentInput.slice(0, -1);
+        display.value = currentInput;
+    } 
+    else if (key === "Escape") {
+        currentInput = "";
+        display.value = "";
+    }
+});
